@@ -22,7 +22,8 @@ var index = require('./routes/index');
 
 var app = express();
 
-mongoose.connect('localhost:27017/elearning');
+//mongoose.connect('localhost:27017/elearning');
+mongoose.connect('mongodb://khalidzn:19951201ZnKhalid@ds137101.mlab.com:37101/e-learning');
 require('./config/passport');
 
 // view engine setup
