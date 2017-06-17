@@ -1,0 +1,89 @@
+
+<div id="banner-wrapper">
+    <div id="banner" class="box container" style="background-image: url('images/bckg.jpg');background-repeat:round" >
+        {{#if hasErrors}}
+            <div style="background-color: antiquewhite;padding:0 10px;border:1px red solid;border-radius: 3px;margin-bottom: 3px">
+                {{# each messages}}
+                    <p>{{this}}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+        {{#if isSent}}
+            <div style="background-color: #DFF2BF;padding:0 10px;border:1px black solid;border-radius: 3px;margin-bottom: 3px">
+                {{# each successContact}}
+                    <p style="color: #4F8A10;">{{this}}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+
+        <div class="row">
+            <div class="7u 12u(medium)">
+                <h2>Welcome {{user.name.last}}</h2>
+                <p style="color: #000;">We're glad to have you with us</p>
+            </div>
+            <div class="5u 12u(medium)">
+                <ul>
+                    <li><a onClick="document.getElementById('addFormationModal').style.display='block'" style="font-size:2em;" class="button big icon fa-arrow-circle-up"> Add Formation </a></li>
+                    <li  style="border-radius: 5px;background: rgba(183, 141, 117, 0.67);">
+                        <a href="#formations" class="button alt big icon fa-arrow-circle-down">Formations ({{hasFormations}})</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div id="addFormationModal" style="" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content" style="background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 2)), url(images/bg01.png);">
+        <div class="modal-header">
+            <button onClick="document.getElementById('addFormationModal').style.display='none'" class="close">&times;</button>
+            <h2 class="button big icon fa-arrow-circle-right" style="font-size:1.5em;color:white;background:black;">Add Formation</h2>
+        </div>
+        <div class="modal-body">
+            <form action="/addFormation" method="post">
+                <ul style="text-decoration:none;margin-bottom: 0">
+                    <li style="float:left;width:45%;margin:0 0 0 10px">
+                        <label for="fname" class="label">Formation Name</label>
+                        <input type="text" id="fname" name="formName" required="true" placeholder="Fill in the formation name">
+                    </li>
+                    <li style="float:right;width:45%;margin:0 10px 0 0">
+                        <label for="lname"  class="label" >Formation Category</label>
+                        <select id="type" name="formCategory" required="true" >
+                            <option value="computer sciences">Computer science</option>
+                            <option value="business">Business</option>
+                            <option value="health">Health & Medicine</option>
+                            <option value="humanity">Humanities</option>
+                            <option value="math">Math</option>
+                            <option value="cooking">Cooking</option>
+                            <option value="sciences">Sciences</option>
+
+                        </select>
+                    </li>
+                    <li style="margin:10px">
+                        <textarea type="text" name="formDescription" required="true"  placeholder="Write description of the formation"></textarea>
+                    </li>
+                    <li style="float:left;width:45%;margin:0 0 0 10px">
+                        <label for="from"  class="label">Import from</label>
+                        <select id="from" name="importFrom" required="true" >
+                            <option value="youtube">Youtube</option>
+                            <option value="locally">Locally</option>
+                        </select>
+                    </li>
+
+                    <li style="float:right;width:45%;margin:0 10px 0 0 ">
+                        <label for="url"  class="label" >Url</label>
+                        <input type="text" id="url" required="true"  name="vId" placeholder="Url / id of video in youtube">
+                    </li>
+
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
+                    <li style="margin:0 10px">
+                        <input type="submit" value="Add formation">
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+
+</div>

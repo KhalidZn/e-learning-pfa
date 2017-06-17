@@ -1,0 +1,141 @@
+<div id="features-wrapper">
+    <div class="container">
+
+        <div id='formations' style="width:  100%;background-color: white;border-radius: 5px;padding: 10px 20px;margin-bottom: 10px">
+            <h2 style="margin: 0">You have added {{hasFormations}} formation! Thank you <i class="fa fa-heart" aria-hidden="true"></i></h2>
+        </div>
+        <div class="row">
+
+            {{#each formations }}
+                <div class="6u 12u(medium)">
+
+                    <!-- Box -->
+
+                    <div id="updateFormationModal{{this._id}}" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content" style="background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 2)), url(images/bg01.png);">
+                            <div class="modal-header">
+                                <button onClick="document.getElementById('updateFormationModal{{this._id}}').style.display='none'" class="close">&times;</button>
+                                <h2 class="button big icon fa-pencil-square-o" style="font-size:1.5em;color:white;background:black;">Update Formation</h2>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/updateFormation" method="post">
+                                    <input type="hidden" name="formationId" value="{{this._id}}">
+                                    <ul style="text-decoration:none;margin-bottom: 0">
+                                        <li style="float:left;width:45%;margin:0 0 0 10px">
+                                            <label for="fname" class="label">Formation Name</label>
+                                            <input type="text" id="fname" name="formName" value="{{this.formName}}" placeholder="Fill in the formation name">
+                                        </li>
+                                        <li style="float:right;width:45%;margin:0 10px 0 0">
+                                            <label for="lname"  class="label">Formation Category</label>
+                                            <select id="categorySelection{{this._id}}" name="formCategory">
+                                                <option value="computer sciences">Computer science</option>
+                                                <option value="business">Business</option>
+                                                <option value="health">Health & Medicine</option>
+                                                <option value="humanity">Humanities</option>
+                                                <option value="math">Math</option>
+                                                <option value="cooking">Cooking</option>
+                                                <option value="sciences">Sciences</option>
+
+                                            </select>
+                                        </li>
+                                        <li style="margin:10px">
+                                            <textarea type="text" name="formDescription"  placeholder="Write description of the formation">{{this.formDescription}}</textarea>
+                                        </li>
+                                        <li style="float:left;width:45%;margin:0 0 0 10px">
+                                            <label for="from"  class="label">Import from</label>
+                                            <select id="from" name="importFrom">
+                                                <option value="youtube">Youtube</option>
+                                                <option value="locally">Locally</option>
+                                            </select>
+                                        </li>
+                                        <li style="float:right;width:45%;margin:0 10px 0 0 ">
+                                            <label for="url"  class="label" >Url</label>
+                                            <input type="text" id="url" name="vId" value="{{this.vId}}" placeholder="Url / id of video in youtube">
+                                        </li>
+
+                                        <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
+                                        <li style="margin:0 10px">
+                                            <input type="submit" value="Update formation">
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="deleteFormationModal{{this._id}}" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content" style="background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 2)), url(images/bg01.png);">
+                            <div class="modal-header">
+                                <button onClick="document.getElementById('deleteFormationModal{{this._id}}').style.display='none'" class="close">&times;</button>
+                                <h2 class="button big icon fa fa-trash-o" style="font-size:1.5em;color:white;background:black;">Delete Formation</h2>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/deleteFormation" method="post">
+                                    <input type="hidden" name="formationId" value="{{this._id}}">
+                                    <ul style="text-decoration:none;margin-bottom: 0;padding: 20px;">
+                                        <li><h2 style="color: white;">Are you sure you want to delete
+                                                <br><b style="color: white">Course {{this.formName}}</b>
+                                            </h2>
+                                        </li>
+                                        <li style="margin:0 10px">
+                                            <input type="submit" style="background: #F44336" value="Delete formation">
+                                        </li>
+                                        <li><a href="/profile" style="font-size: x-large">No back to profile</a></li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <section class="box feature" style="height: 550px;overflow: auto">
+                        <button style="float: right;margin-bottom: 5px;background: #F44336" onClick="document.getElementById('deleteFormationModal'+'{{this._id}}').style.display='block';">Delete</button>
+                        <button style="float: right;margin-bottom: 5px" onclick="updateFormation('{{this._id}}','{{this.formCategory}}')">Update</button>
+                        <div class="inner" style="padding: 2em 10px 10px 2em;">
+                            <header style="margin: 0;">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                : {{this.nbFollowers}} following
+                                <h2>Course: {{this.formName}}</h2>
+                                <p>Imported from: <b>{{this.importFrom}}</b>
+                                and the vId is : <b>{{this.vId}}</b></p>
+                            </header><hr style="margin: 0">
+                        </div>
+
+                        <div class="youtube" data-embed="{{this.vId}}">
+
+                            <!-- (2) the "play" button -->
+                            <div class="play-button"></div>
+
+                        </div>
+                        <!--<div class='youtube_codegena' id='{{this.vId}}' data-params='?&theme=light&autoplay=1&color=white&autohide=2&modestbranding=1&showinfo=0' src='http://i.ytimg.com/vi/{{this.vId}}/maxresdefault.jpg'style='width:100%; height:300px;'></div>
+
+                        <iframe width="100%" height="300" src="https://www.youtube.com/embed/{{this.vId}}" frameborder="0" allowfullscreen style="border-radius: 5px">
+                        </iframe>-->
+                        <div style="padding: 10px;">
+                            <p>Category: <b>{{this.formCategory}}</b></p>
+                        <p> Description: <b>{{this.formDescription}}</b></p>
+                        </div>
+                    </section>
+
+                </div>
+
+            {{/each}}
+        </div>
+    </div>
+</div>
+<script>
+    function updateFormation(idFormation,formCategory) {
+       /* var playBtns=document.getElementsByClassName('play-button');
+        for(var i=0;i<playBtns.length;i++){
+            playBtns[i].style.zIndex=0;
+        }*/
+        document.getElementById('categorySelection'+idFormation).value=formCategory;
+        document.getElementById('updateFormationModal'+idFormation).style.display='block';
+        //alert(idFormation);
+    }
+</script>

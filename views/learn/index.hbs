@@ -1,0 +1,320 @@
+
+
+
+
+<div class="homepage">
+<div id="page-wrapper">
+
+    <!-- Banner -->
+    <div id="banner-wrapper">
+        <div id="banner" class="box container" style="background-image: url('images/bckg.jpg');background-repeat:round" >
+
+            {{#if hasErrors}}
+                <div style="background-color: antiquewhite;padding:0 10px;border:1px red solid;border-radius: 3px;margin-bottom: 3px">
+                    {{# each messages}}
+                        <p>{{this}}</p>
+                    {{/each}}
+                </div>
+            {{/if}}
+            {{#if isAdded}}
+                <div style="background-color: #DFF2BF;padding:0 10px;border:1px black solid;border-radius: 3px;margin-bottom: 3px">
+                    {{# each successFollow}}
+                        <p style="color: #4F8A10;">{{this}}</p>
+                    {{/each}}
+                </div>
+            {{/if}}
+            {{#if isSent}}
+                <div style="background-color: #DFF2BF;padding:0 10px;border:1px black solid;border-radius: 3px;margin-bottom: 3px">
+                    {{# each successContact}}
+                        <p style="color: #4F8A10;">{{this}}</p>
+                    {{/each}}
+                </div>
+            {{/if}}
+            <div class="row">
+                <div class="7u 12u(medium)">
+                    <h2>Welcome to E-Learning</h2>
+                    <p style="color:black;">The free open courses platforme</p>
+                </div>
+                <div class="5u 12u(medium)">
+                    <ul>
+                        <li><a onClick="document.getElementById('signUpModal').style.display='block'" style="font-size:2em;" class="button big icon fa-arrow-circle-right"> Create account </a></li>
+                        <li style="border-radius: 5px;background: rgba(183, 141, 117, 0.67);">
+                            <a href="#formations" class="button alt big icon fa-arrow-circle-down">Browse courses</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Features -->
+
+    <div id="features-wrapper">
+        <div class="container">
+
+            <div id='formations' style="width:  100%;background-color: white;border-radius: 5px;padding: 10px 20px;margin-bottom: 10px">
+                <h2 style="margin: 0"><i class="fa fa-laptop" aria-hidden="true"></i>
+                    Computer sciences
+                    <a href="/formations?cat=computer sciences" style="float: right;border-radius:5px;border: 1px black solid;padding: 0 5px;font-size:0.6em"> See more <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                </h2>
+            </div>
+            <div class="row">
+
+                {{#each computerFormations }}
+                      <div class="3u 6u(medium) 12u(small)">
+
+                            <!-- Box -->
+                            <section class="box feature" style="height: 380px;overflow: auto;">
+                                <div class="youtube" data-embed="{{this.vId}}" style="width: 100%">
+
+                                    <!-- (2) the "play" button -->
+                                    <div class="play-button"></div>
+
+                                </div>
+                                  <div class="inner" style="padding: 1em;">
+                                    <header style="margin: 0;">
+                                        <h2>{{this.formName}}</h2>
+                                        <p>By {{this.former.name}}</p>
+                                    </header><hr style="margin: 0">
+                                    <p>{{this.formDescription}}</p>
+                                    <form action="/watchLater" method="post">
+                                    <input type="hidden" name="formationId" value="{{this._id}}">
+                                    <input type="submit" value="Watch it later" style="padding: 0;height: 40px;font-size: 1.1em">
+
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        : {{this.nbFollowers}} following it<br>
+                                    </form>
+                                </div>
+                            </section>
+
+                        </div>
+
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <div id="features-wrapper">
+        <div class="container">
+            <div id='formations' style="width:  100%;background-color: white;border-radius: 5px;padding: 10px 20px;margin-bottom: 10px">
+                <h2 style="margin: 0"><i class="fa fa-briefcase" aria-hidden="true"></i>
+                    Business
+                    <a href="/formations?cat=business" style="float: right;border-radius:5px;border: 1px black solid;padding: 0 5px;font-size:0.6em"> See more <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                </h2>
+            </div>
+            <div class="row">
+                {{#each businessFormations  }}
+                    <div class="3u 6u(medium) 12u(small)">
+
+                        <!-- Box -->
+                        <section class="box feature" style="height: 380px;overflow: auto;">
+                            <div class="youtube" data-embed="{{this.vId}}" style="width: 100%">
+
+                                <div class="play-button"></div>
+
+                            </div>
+
+                            <div class="inner" style="padding: 1em;">
+                                <header style="margin: 0;">
+                                    <h2>{{this.formName}}</h2>
+                                    <p>By {{this.former.name}}</p>
+                                </header><hr style="margin: 0">
+                                <p>{{this.formDescription}}</p>
+                                <form action="/watchLater" method="post">
+                                    <input type="hidden" name="formationId" value="{{this._id}}">
+                                    <input type="submit" value="Watch it later" style="padding: 0;height: 40px;font-size: 1.1em">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    : {{this.nbFollowers}} following it
+                                </form>
+
+                            </div>
+                        </section>
+
+                    </div>
+
+                {{/each}}
+
+            </div>
+        </div>
+    </div>
+
+    <div id="features-wrapper">
+        <div class="container">
+            <div id='formations' style="width:  100%;background-color: white;border-radius: 5px;padding: 10px 20px;margin-bottom: 10px">
+                <h2 style="margin: 0"><i class="fa fa-heartbeat" aria-hidden="true"></i>
+                    Health and Medicine
+                    <a href="/formations?cat=health" style="float: right;border-radius:5px;border: 1px black solid;padding: 0 5px;font-size:0.6em"> See more <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                </h2>
+            </div>
+            <div class="row">
+                {{#each healthFormations  }}
+                    <div class="3u 6u(medium) 12u(small)">
+
+                    <!-- Box -->
+                    <section class="box feature" style="height: 380px;overflow: auto;">
+                        <div class="youtube" data-embed="{{this.vId}}" style="width: 100%">
+
+                            <div class="play-button"></div>
+
+                        </div>
+
+                        <div class="inner" style="padding: 1em;">
+                            <header style="margin: 0;">
+                                <h2>{{this.formName}}</h2>
+                                <p>By {{this.former.name}}</p>
+                            </header><hr style="margin: 0">
+                            <p>{{this.formDescription}}</p>
+                            <form action="/watchLater" method="post">
+                                <input type="hidden" name="formationId" value="{{this._id}}">
+                                <input type="submit" value="Watch it later" style="padding: 0;height: 40px;font-size: 1.1em">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                : {{this.nbFollowers}} following it
+                            </form>
+
+                        </div>
+                    </section>
+
+                </div>
+
+            {{/each}}
+
+        </div>
+    </div>
+    </div>
+
+    <!-- Main -->
+    <div id="main-wrapper">
+        <div class="container">
+            <div class="row 200%">
+                <div class="4u 12u(medium)">
+
+                    <!-- Sidebar -->
+                    <div id="sidebar">
+                        <section class="widget thumbnails">
+                            <h3>Interesting stuff</h3>
+                            <div class="grid">
+                                <div class="row 50%">
+                                    <div class="6u ">
+                                        <a  class="button icon fa-user" style="background:hsl(0, 0%, 40%);width: 100%;font-size: smaller;text-align: center">
+                                            {{nbStudents}} Students
+                                        </a>
+                                    </div>
+                                    <div class="6u">
+                                        <a  class="button icon fa-user" style="background:hsl(0, 0%, 40%);width: 100%;font-size: smaller;text-align: center">
+                                            {{nbFormers}} Formers
+                                        </a>
+                                    </div>
+                                    <div class="6u">
+                                        <a class="button icon fa-graduation-cap" style="background:hsl(0, 0%, 40%);width: 100%;font-size: smaller;text-align: center">
+                                            {{nbFormations}} Courses</a>
+                                    </div>
+                                    <div class="6u">
+                                        <a class="button icon fa-home" style="background:hsl(0, 0%, 40%);width: 100%;font-size: smaller;text-align: center">
+                                            1 Platform</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <a  style="background:hsl(0, 0%, 40%)" class="button icon fa-plus-square-o">And more to come</a>
+                        </section>
+                    </div>
+
+                </div>
+                <div class="8u 12u(medium) important(medium)">
+
+                    <!-- Content -->
+                    <div id="content">
+                        <section class="last">
+                            <h2>So what's this ?</h2>
+                            <p>This is <strong>E-Learning</strong>, a free and fully open courses platform developed using <a href="https://nodejs.org">NodeJS</a>.<br/>
+                                E-Learning is the our project of year end (PFA) we <a href="">Nouas Elmehdi, Ouajjini Zineb and Khalid Zennouhi</a><br>
+                                So feel free to follow courses above, join the open discussion, or become former to help us grow the platform.
+                            Most of all feel free to contact us any moment you have wonder or need help.<br> We'll be glad to hear from you.</p>
+                            <a  style="background:hsl(0, 0%, 40%);float:right" onclick="document.getElementById('contact').style.display='block'" class="button icon fa-paper-plane-o">Contact us</a>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-wrapper">
+        <footer id="footer" class="container">
+            <div class="row">
+
+                    <div class="3u 6u(medium)">
+                        <!-- Links -->
+                        <section class="widget links">
+                            <h3>Why E-Learning?</h3>
+                            <ul class="style2">
+                                <li><a >It's open free and easy to use</a></li>
+                                <li><a >Big community support</a></li>
+                                <li><a >Large courses platform</a></li>
+                                <li><a >All the new tutorials</a></li>
+                            </ul>
+                        </section>
+
+                    </div>
+
+                    <div class="3u 6u(medium) ">
+                    <!-- Links -->
+                    <section class="widget links">
+                        <h3>E-Learning services</h3>
+                        <ul class="style2">
+                            <li><a>Discussion opened  for all users</a></li>
+                            <li><a>Forums support any moment</a></li>
+                            <li><a>Contact followers/formers </a></li>
+                            <li><a>Support and help centre </a></li>
+                        </ul>
+                    </section>
+
+                </div>
+
+                <div class="3u 6u(medium) ">
+
+                    <!-- Links -->
+                    <section class="widget links">
+                        <h3>E-Learning is</h3>
+                        <ul class="style2">
+                            <li><a >Javascript technologies</a></li>
+                            <li><a >Giant mongo database</a></li>
+                            <li><a>NodeJS/Express/Mongoose</a></li>
+                            <li><a>NPM Supported</a></li>
+                        </ul>
+                    </section>
+
+                </div>
+                <div class="3u 6u$(medium) ">
+
+                    <!-- Contact -->
+                    <section class="widget contact last">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                            <li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+                        </ul>
+                        <p>Nouas Elmehdi<br />
+                            Ouajjini Zineb<br />
+                            Khalid Zn</p>
+                    </section>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="12u">
+                    <div id="copyright">
+                        <ul class="menu">
+                            <li>&copy; E-Learning. All rights reserved</li><li>Developed with : <i class="fa fa-heart-o" aria-hidden="true"></i> of <a href="https://nodejs.org">NodeJS</a>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</div>
+</div>

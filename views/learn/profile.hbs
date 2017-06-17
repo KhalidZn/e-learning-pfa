@@ -1,0 +1,47 @@
+
+<div class="homepage">
+    <div id="page-wrapper">
+
+        {{#if errorMessages}}
+            <div style="background-color: #0090c5;padding:10px;text-align:center;border-radius: 3px;margin-bottom: 3px">
+
+                    <h3 style="color: white;margin: 0">{{errorMessages}}</h3>
+            </div>
+
+        {{/if}}
+        
+        <!-- if user is former -->
+        {{#if isFormer}}
+            {{>former}}
+
+            <!-- Formations -->
+            {{#if hasFormations}}
+                {{>hasformations}}
+            {{else}}
+            <div class="container">
+
+                <div id='formations' style="width:  100%;background-color: white;border-radius: 5px;padding: 10px 20px;margin-bottom: 10px">
+                    <h2 style="margin: 0">Help us develop e-learning, by adding new formations <i class="fa fa-heart-o" aria-hidden="true"></i></h2>
+                </div>
+            </div>
+            {{/if}}
+        {{else}}
+            {{>student}}
+        {{/if}}
+
+        <div id="footer-wrapper">
+            <footer id="footer" class="container">
+                <div class="row">
+                    <div class="12u">
+                        <div id="copyright">
+                            <ul class="menu">
+                                <li>&copy; E-Learning. All rights reserved</li><li>Developed with : <i class="fa fa-heart-o" aria-hidden="true"></i> of <a href="https://nodejs.org">NodeJS</a>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,140 @@
+<div class="homepage">
+    <div id="page-wrapper">
+        {{#if isSent}}
+
+
+        <div id="banner-wrapper">
+            <div id="banner" class="box container">
+                <div style="background-color: #DFF2BF;padding:0 10px;border:1px black solid;border-radius: 3px;margin-bottom: 3px">
+                    {{# each successContact}}
+                        <p style="color: #4F8A10;">{{this}}</p>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{/if}}
+<div id="features-wrapper">
+    <div class="container">
+        <div id='formations' style="width:  100%;background-color: white;border-radius: 5px;padding: 10px 20px;margin-bottom: 10px">
+            <h2 style="margin: 0"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
+                Followed courses ({{following}})</h2>
+        </div>
+        <div class="row">
+
+            <div class="4u 6u(medium) 12u(small)">
+                <div id="watch" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content" style="height:100%;background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 2)), url(images/bg01.png);">
+                    <div class="modal-header" >
+                        <button onClick="document.getElementById('watch').style.display='none'" class="close">&times;</button>
+                        <h2 class="button big icon fa-caret-square-o-right" style="font-size:1.5em;color:white;background:black;">Watching </h2>
+                    </div>
+                    <div class="modal-body" style="margin-bottom: 0">
+                        <iframe id="watchIframe" width="100%" height="450" frameborder="0" allowfullscreen style="border-radius: 5px">
+                        </iframe>
+
+                    </div>
+                    <div class="modal-footer" style="margin: 0 10px">
+
+                        <button style="float:right;">
+                            <a href="" id="aForm" class="submit" style="text-decoration: blink;color:white;">
+                                Join discussion about this course
+                            </a>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+
+            {{#each followingCourses }}
+
+                <div class="4u 6u(medium) 12u(small)">
+
+
+                    <div id="unfollow{{this._id}}" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content" style="background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 2)), url(images/bg01.png);">
+                            <div class="modal-header">
+                                <button onClick="document.getElementById('unfollow{{this._id}}').style.display='none'" class="close">&times;</button>
+                                <h2 class="button big icon fa fa-trash-o" style="font-size:1.5em;color:white;background:black;">Unfollow Formation</h2>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/unfollowFormation" method="post">
+                                    <input type="hidden" name="formationId" value="{{this._id}}">
+                                    <ul style="text-decoration:none;margin-bottom: 0;padding: 20px;">
+                                        <li><h2 style="color: white;">Are you sure you want to unfollow
+                                            <br><b style="color: white">Course {{this.formName}}</b>
+                                        </h2>
+                                        </li>
+                                        <li style="margin:0 10px">
+                                            <input type="submit" style="background: #F44336" value="Unfollow formation">
+                                        </li>
+                                        <li><a href="/following" style="font-size: x-large">No back to following</a></li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Box -->
+                    <section class="box feature" style="height: 400px;overflow: auto;">
+
+                        <input value="Start watching" onclick="watch('{{this.vId}}','{{this._id}}')"
+                               type="submit"  style="padding: 0">
+                        <div class="youtube" data-embed="{{this.vId}}" style="width: 100%">
+
+                            <!-- (2) the "play" button -->
+                            <div class="play-button"></div>
+
+                        </div>
+
+                        <div class="inner" style="padding: 1em;">
+                            <header style="margin: 0;">
+
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                : {{this.nbFollowers}} following it too
+                                <h2>{{this.formName}}</h2>
+                                <p>By {{this.former.name}}</p>
+                            </header><hr style="margin: 0">
+                            <p>{{this.formDescription}}</p>
+                            <input type="submit" style="padding:0;background: #F44336" value="Unfollow" onClick="document.getElementById('unfollow'+'{{this._id}}').style.display='block';">
+
+
+                        </div>
+                    </section>
+
+                </div>
+
+            {{/each}}
+
+        </div>
+    </div>
+</div>
+        <div id="footer-wrapper">
+            <footer id="footer" class="container">
+                <div class="row">
+                    <div class="12u">
+                        <div id="copyright">
+                            <ul class="menu">
+                                <li>&copy; E-Learning. All rights reserved</li><li>Developed with : <i class="fa fa-heart-o" aria-hidden="true"></i> of <a href="https://nodejs.org">NodeJS</a>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</div>
+<script>
+    function watch(vId,formationId) {
+        document.getElementById('aForm').href="/watching?formation="+formationId;
+        document.getElementById('watchIframe').src="https://www.youtube.com/embed/"+vId+"?modestbranding=1";
+        document.getElementById('watch').style.display='block';
+    }
+</script>

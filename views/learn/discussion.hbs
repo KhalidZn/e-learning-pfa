@@ -1,0 +1,185 @@
+<style type="text/css">
+    @media screen and (max-width:980px){
+        #dis{
+            padding: 0 !important;
+            max-height: 50px;
+        }
+    }
+    ul#messages li{
+        background: #2a2e2f;
+        color: white;
+        padding: 0 5px;
+        border-radius: 5px;
+        font-size: x-large;
+        margin-bottom: 3px;
+    }
+    .user{
+        font-weight: bold;
+    }
+    .msg{
+        font-style: italic;
+    }
+    .date{
+        color: #000;
+        float:right;
+    }
+    #details{
+        text-align: center;
+        background: #e91e63;
+        color: white;
+        font-family: monospace;
+        margin-bottom: 100px;
+        border-radius: 5px;
+        position:fixed;top:0;width:95%
+    }
+
+</style>
+<div class="homepage">
+    <div id="page-wrapper">
+
+        <!-- Banner -->
+        <div id="banner-wrapper">
+            <div id="banner" class="box container">
+                {{#if isSent}}
+                    <div style="background-color: #DFF2BF;padding:0 10px;border:1px black solid;border-radius: 3px;margin-bottom: 3px">
+                        {{# each successContact}}
+                            <p style="color: #4F8A10;">{{this}}</p>
+                        {{/each}}
+                    </div>
+                {{/if}}
+                <div class="row">
+                    <div class="7u 12u(medium)" style="width: 100%">
+                        <h2>Welcome to E-Learning discussion</h2>
+                        <p>Here you can ask and find everything you need provided by other users and formers</p>
+                    </div>
+                    <div class="5u 12u(medium)" style="width: 100%">
+                        <ul>
+                            <li><a onClick="startDiscussion('{{user.name.first}}')" style="text-align:center;font-size:2em;" class="button big icon fa-comments"><span id="join">Join the discussion</span>  <span id="nbUsers"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="discussionModal" class="modal" >
+
+            <!-- Modal content -->
+            <div class="modal-content" style="overflow-y: auto;max-height: 98%;background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 2)), url(images/bg01.png);">
+                <div class="modal-header">
+                    <button onClick="document.getElementById('discussionModal').style.display='none'" class="close">&times;</button>
+                    <h2 class="button big icon fa-comments" style="font-size:1.5em;color:white;background:black;">Discussion</h2>
+                    <h4 id="details"></h4>
+                </div>
+                <div class="modal-body">
+                  <ul id="messages" style="margin-bottom: 4em"></ul>
+                </div>
+                <div class="modal-footer" style="margin: 0 10px;position: fixed;bottom: 0;width: 95%">
+                <form action="" id="discussionForm">
+                        <input type="text" placeholder="what's in your mind?" id="discuss" name="discuss" autofocus style="width: 85%;float: left;"/>
+                        <input type="submit" id="dis" value="Send" style="width: 15%;padding: 0">
+                </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="footer-wrapper">
+            <footer id="footer" class="container">
+                <div class="row">
+                    <div class="12u">
+                        <div id="copyright">
+                            <ul class="menu">
+                                <li>&copy; E-Learning. All rights reserved</li><li>Developed with : <i class="fa fa-heart-o" aria-hidden="true"></i> of <a href="https://nodejs.org">NodeJS</a>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+</script>
+
+<script>
+    var socket = io();
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 3000;
+
+    $( document ).ready(function() {
+        socket.on('nbUsers',function (nbUsers) {
+            if(nbUsers==0){
+
+                $('#nbUsers').html('Be the first to start the discussion');
+                $('#join').html('');
+            }
+            if(nbUsers==1){
+
+                $('#nbUsers').html(nbUsers+' user is connected');
+            }
+            if(nbUsers>1){
+           $('#nbUsers').html(nbUsers+' users are connected');
+            }
+        })
+    });
+    socket.on('user joined',function (userJoined) {
+        if(userJoined.nbUsers==1){
+            $('#details').html($('#nbUsers').html('You have joined the discussion, start typing bellow'));
+        }else
+        $('#details').html($('#nbUsers').html(userJoined.username+' Joined '+userJoined.nbUsers+" users are connected now"));
+    });
+    socket.on('user left',function (userLeft) {
+        if(userLeft.nbUsers==1){
+            $('#details').html($('#nbUsers').html(userLeft.username+' left '));
+        }else
+            $('#details').html($('#nbUsers').html(userLeft.username+' left '+userLeft.nbUsers+" users still connected "));
+    })
+    socket.on('typing',function (typing) {
+
+        $('#details').html($('#nbUsers').html(typing.username+' is typing<span style="float: right;margin-right: 5px"> nbUser: '+typing.nbUsers+"</span>"));
+    });
+    socket.on('stop typing',function (stopped) {
+        if(stopped.nbUsers==1){
+            $('#details').html($('#nbUsers').html(stopped.nbUsers+" user is connected now"));
+        }else
+        $('#details').html($('#nbUsers').html(stopped.nbUsers+" users are connected now"));
+    })
+    $('#discussionForm').submit(function(){
+        socket.emit('discuss', {'msg':$('#discuss').val(),'time':(new Date()).getTime()});
+        $('#discuss').val('');
+        return false;
+    });
+
+    //on keyup, start the countdown
+    $('#discuss').on('keyup', function () {
+        clearTimeout(typingTimer);
+        socket.emit('typing');
+        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    });
+
+    $('#discuss').on('keydown', function () {
+        clearTimeout(typingTimer);
+    });
+
+    function doneTyping () {
+        socket.emit('stop typing');
+    }
+
+
+
+    socket.on('discuss',function (discuss) {
+        $('#messages').append('<li><span class="user">'+discuss.username+'</span> :<span class="msg"> '+discuss.discuss.msg+'</span><span class="date"> '+discuss.discuss.time+'</span>');
+    });
+    function startDiscussion(username) {
+        $('#details').html($('#nbUsers').html());
+        document.getElementById('discussionModal').style.display='block';
+
+        socket.emit('add user', username);
+    }
+
+</script>

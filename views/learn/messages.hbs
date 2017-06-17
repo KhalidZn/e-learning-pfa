@@ -1,0 +1,78 @@
+<div class="homepage">
+    <div id="page-wrapper">
+
+
+        <!-- Banner -->
+        {{#if isSent}}
+            <div id="banner-wrapper">
+                <div id="banner" class="box container">
+                        <div style="background-color: #DFF2BF;padding:0 10px;border:1px black solid;border-radius: 3px;margin-bottom: 3px">
+                            {{# each successContact}}
+                                <p style="color: #4F8A10;">{{this}}</p>
+                            {{/each}}
+                        </div>
+
+                    <!-- <div class="row">
+
+                    </div> -->
+                </div>
+            </div>
+        {{/if}}
+<div id="features-wrapper">
+    <div class="container">
+        <div id='formations' style="width:  100%;background-color: white;border-radius: 5px;padding: 10px 20px;margin-bottom: 10px">
+            <h2 style="margin: 0"> <i class="fa fa-envelope-o" aria-hidden="true"></i>
+
+                Messages ({{nbMessages}})</h2>
+        </div>
+        <div class="row">
+        <div class="4u 5u(medium)" style="float:left;">
+            {{#each messages}}
+                <section class="box feature" style="cursor: pointer" id="{{this._id}}" onclick="read('{{this._id}}')">
+
+                    <div class="inner" style="padding: 1em;background: rgba(0,0,0,0.15)">
+                        <header style="margin: 0;" id="h{{this._id}}">
+                            From: <b>{{this.from}}</b><br>
+                            Object: <b> {{this.object}}</b>
+                        </header>
+                        <div id="content{{this._id}}" hidden>{{this.content}}</div>
+                        <div id="date{{this._id}}" style="float:right;">{{moment this.dateSent "fromNow"}}</div><br>
+                    </div>
+                </section>
+            {{/each}}
+        </div>
+            <div class="8u 7u(medium)" style="float: right;" id="read">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="footer-wrapper">
+            <footer id="footer" class="container">
+                <div class="row">
+                    <div class="12u">
+                        <div id="copyright">
+                            <ul class="menu">
+                                <li>&copy; E-Learning. All rights reserved</li><li>Developed with : <i class="fa fa-heart-o" aria-hidden="true"></i> of <a href="https://nodejs.org">NodeJS</a>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</div>
+<script>
+    function read(messageId) {
+        document.getElementById('read').innerHTML=
+                '<section class="box feature ">' +
+                '<div class="inner" style="padding: 1em;background: rgba(0,0,0,0.15)">'+
+                '<header>'+document.getElementById('h'+messageId).innerHTML+'</header>'+
+                '<p>'+document.getElementById('content'+messageId).innerHTML+'</p>' +
+                '<p style="float: right">'+document.getElementById('date'+messageId).innerHTML+'</p><br>'+
+                '</section>';
+    }
+</script>

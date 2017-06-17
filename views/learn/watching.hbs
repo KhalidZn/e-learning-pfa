@@ -1,0 +1,94 @@
+<style>
+    @media screen and (max-width:980px){
+        #sub{
+            padding: 0 !important;
+            max-height: 50px;
+        }
+    }
+</style>
+
+
+<div class="homepage">
+    <div id="page-wrapper">
+
+        <!-- Banner -->
+        <div id="banner-wrapper">
+            <div id="banner" class="box container">
+                {{#if isSent}}
+                    <div style="background-color: #DFF2BF;padding:0 10px;border:1px black solid;border-radius: 3px;margin-bottom: 3px">
+                        {{# each successContact}}
+                            <p style="color: #4F8A10;">{{this}}</p>
+                        {{/each}}
+                    </div>
+                {{/if}}
+
+                <h2>Course : {{formation.formName}} ({{formation.formCategory}})</h2>
+                <h3>Added by : {{formation.former.name}} <span style="float: right">{{moment formation.dateAdded "fromNow"}}</span></h3><hr style="margin: 0">
+                <p>{{formation.formDescription}}</p>
+                <i class="fa fa-users" aria-hidden="true"></i>
+                : {{formation.nbFollowers}} following it
+                {{#if isAdded}}
+                    <div style="background-color: #DFF2BF;padding:0 10px;border:1px black solid;border-radius: 3px;margin-bottom: 3px">
+                        <p style="color: #4F8A10;">{{successComment}}</p>
+                    </div>
+                {{else}}
+                {{/if}}
+            </div>
+        </div>
+
+<div id="features-wrapper">
+    <div class="container">
+        <div id='' style="width:  100%;background-color: white;border-radius: 5px;padding: 10px 20px;margin-bottom: 10px">
+            <h2 style="margin: 0"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
+
+                Watching {{formation.formName}}</h2>
+        </div>
+        <div class="row">
+            <iframe src="https://www.youtube.com/embed/{{formation.vId}}?modestbranding=1" width="100%" height="450" frameborder="0" allowfullscreen style="border-radius: 5px">
+            </iframe>
+            <div style="width:100%;margin-bottom: 20px">
+            <form action="/addComment" method="post">
+                <input name="formationId" value="{{formationId}}" type="hidden">
+                <input type="text" placeholder="Comment here"  name="comment" autofocus style="width: 85%;float: left;"/>
+                <input type="submit" id="sub" value="Comment" style="width: 15%;padding: 0">
+            </form>
+         <h2 style="background-color: white;border-radius: 5px;padding: 10px 20px;margin-bottom: 10px"><i class="fa fa-comments" aria-hidden="true"></i>
+
+                    Comments {{nbComments}}</h2>
+
+            {{#each comments}}
+                <div>
+                <section class="box feature" style="padding: 20px;margin-bottom: 5px">
+
+                        <header style="margin: 0;">
+                            <h2><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{this.username}}</h2>
+                            <p style="float:right;">{{moment this.dateComment "fromNow"}}</p><hr style="margin: 0">
+                                <p>{{this.details.content}}</p>
+                        </header>
+
+                </section>
+            </div>
+            {{/each}}
+        </div>
+
+    </div>
+</div>
+    </div>
+
+        <div id="footer-wrapper">
+            <footer id="footer" class="container">
+                <div class="row">
+                    <div class="12u">
+                        <div id="copyright">
+                            <ul class="menu">
+                                <li>&copy; E-Learning. All rights reserved</li><li>Developed with : <i class="fa fa-heart-o" aria-hidden="true"></i> of <a href="https://nodejs.org">NodeJS</a>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+</div>
+</div>
+

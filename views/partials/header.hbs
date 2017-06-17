@@ -1,0 +1,79 @@
+
+<div id="header-wrapper">
+    <header id="header" class="container">
+
+        <!-- Logo -->
+        <div id="logo">
+            <h1 style="background:#7b7477"><a href="/">E-Learning</a></h1>
+            <!-- <span>by HTML5 UP</span> -->
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li class="current">
+                    <a href="/">Home <i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <a href="#">Formations <i class="fa fa-graduation-cap" aria-hidden="true"> {{following}}</i>
+                </a>
+                    <ul>{{#if login}}
+                        <li><a href="/following">Following <b style="color:black">{{following}}</b>
+                            <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
+                        </a></li>
+                    {{/if}}
+                        <li><a href="/formations?cat=computer sciences">Computer sciences</a></li>
+
+                        <li><a href="/formations?cat=business">Business</a></li>
+                        <li><a href="/formations?cat=health">Health & Medicine</a></li>
+
+                        <li><a href="/formations?cat=humanity">Humanities</a></li>
+                        <li><a href="/formations?cat=math">Maths</a></li>
+                        <li><a href="/formations?cat=cooking">Cooking</a></li>
+                        <li><a href="/formations?cat=sciences">Science</a></li>
+
+
+
+                    </ul>
+                </li>
+                {{#if login}}
+                <li>
+                    <a href="/discussion" style="background: #E91E63;color: white;">Discussion <i class="fa fa-comments" aria-hidden="true"></i></a>
+                </li>
+                <li><a href="#" style="background: #03A9F4;color: white;">{{user.name.first}} <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                    <ul>
+                        <li>
+                            <a href="/profile" id="signup" style="border-radius: 5px">Profile <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/messages" id="signup" style="border-radius: 5px">Messages <b style="color:black">{{nbMessages}}</b> <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout" id="signin" style="border-radius: 5px">Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{else}}
+                    <li><a href="#" style="background: #03A9F4;color: white;">User <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                        <ul>
+                            <li>
+                                <a href="" onClick="document.getElementById('signUpModal').style.display='block'" id="signup" style="border-radius: 5px">Sign up <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            </a></li>
+                            <li>
+                                <a href="" onClick="document.getElementById('signInModal').style.display='block';" id="signin" style="border-radius: 5px">Sign in <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            </a></li>
+                        </ul>
+                    </li>
+                {{/if}}
+                <li>
+                    <a href="" onclick="document.getElementById('contact').style.display='block'">Contact us <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                </a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+</div>

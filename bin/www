@@ -1,0 +1,149 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('e-learning:server');
+var http = require('http');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '5000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+//Adding socket.io
+var nbUsers=0;
+var io=require('socket.io')(server);
+var moment=require('moment');
+io.on('connection',function (socket) {
+    io.emit('nbUsers',nbUsers);
+    var addedUser = false;
+    console.log(socket.username+"someone is connected!");
+
+    socket.on('add user', function (username) {
+        if (addedUser) return;
+        socket.username = username;
+        ++nbUsers;
+        addedUser = true;
+        io.emit('user joined', {
+            username: socket.username,
+            nbUsers: nbUsers
+        });
+    });
+
+    socket.on('typing', function () {
+        io.emit('typing', {
+            username: socket.username,
+            nbUsers: nbUsers
+        });
+    });
+
+    socket.on('stop typing', function () {
+        io.emit('stop typing', {
+            username: socket.username,
+            nbUsers: nbUsers
+        });
+    });
+
+    socket.on('discuss', function(discuss){
+        discuss.time=moment(discuss.time).fromNow();
+        //discuss.time=time;
+        io.emit('discuss', {
+            discuss:discuss,
+            username: socket.username
+        });
+        console.log("msg : "+discuss.msg+" user: "+socket.username);
+    });
+
+    socket.on('disconnect', function () {
+        if (addedUser) {
+            --nbUsers;
+
+            // echo globally that this client has left
+            io.emit('user left', {
+                username: socket.username,
+                nbUsers: nbUsers
+            });
+        }
+    });
+});
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+console.log("E-Learning is live on "+port);

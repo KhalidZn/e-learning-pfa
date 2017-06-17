@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>E-Learning</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+      <link rel="stylesheet" href="assets/css/main.css" />
+      <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+      <!--Boorstrap
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      -->
+  </head>
+<body>
+  <!-- Header -->
+  {{>header}}
+  <!-- The Modal -->
+  <div id="signUpModal" style="" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content" style="background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 2)), url(images/bg01.png);">
+          <div class="modal-header">
+              <button onClick="document.getElementById('signUpModal').style.display='none'" class="close">&times;</button>
+              <h2 class="button big icon fa-arrow-circle-right" style="font-size:1.5em;color:white;background:black;">Create Account</h2>
+          </div>
+          <div class="modal-body">
+              <form action="/signup" method="post">
+                  <ul style="text-decoration:none;margin-bottom: 0">
+                      <li style="float:left;width:45%;margin:0 0 0 10px">
+                          <label for="fname" class="label">First Name</label>
+                          <input type="text" id="fname" name="firstName" placeholder="Your first name.." required>
+                      </li>
+                      <li style="float:right;width:45%;margin:0 10px 0 0">
+                          <label for="lname"  class="label" >Last Name</label>
+                          <input type="text" id="lname" name="lastName" placeholder="Your last name.." required>
+                      </li>
+                      <li style="float:left;width:45%;margin:0 0 0 10px">
+                          <label for="email"  class="label">Email</label>
+                          <input type="text" id="email" name="email" placeholder="Your email" required>
+                      </li>
+                      <li style="float:right;width:45%;margin:0 10px 0 0">
+                          <label for="password"  class="label">Password</label>
+                          <input type="password" id="password" name="password" placeholder="Your password" required>
+                      </li>
+
+                      <li style="width:45%;margin:0 10px">
+                          <label for="type"  class="label" >Type</label>
+                          <select id="type" name="type" required>
+                              <option value="student">Student</option>
+                              <option value="former">Former</option>
+                          </select>
+                      </li>
+
+                      <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
+                      <li style="margin:0 10px">
+                          <input type="submit" value="Sign Up">
+                      </li>
+                  </ul>
+              </form>
+          </div>
+          <div class="modal-footer" style="margin: 0 10px">
+              {{#if hasErrors}}
+                  <div style="background-color: antiquewhite;padding:0 10px;border:1px red solid;border-radius: 3px;margin-bottom: 3px">
+                      {{# each messages}}
+                          <h4>{{this}}</h4>
+                      {{/each}}
+                  </div>
+              {{else}}
+                  <h3>Already has account? <span><a onClick="document.getElementById('signInModal').style.display='block';
+                document.getElementById('signUpModal').style.display='none'" style="color: antiquewhite;cursor: pointer;">Log in</a></span></h3>
+              {{/if}}
+          </div>
+      </div>
+
+  </div>
+
+  <div id="signInModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content" style="background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 2)), url(images/bg01.png);">
+          <div class="modal-header">
+              <button onClick="document.getElementById('signInModal').style.display='none'" class="close">&times;</button>
+              <h2 class="button big icon fa-arrow-circle-right" style="font-size:1.5em;color:white;background:black;">Sign In</h2>
+          </div>
+          <div class="modal-body">
+              <form action="/signin" method="post">
+                  <ul style="text-decoration:none;margin-bottom: 0">
+                      <li style="float:left;width:45%;margin:0 0 0 10px">
+                          <label for="email"  class="label">Email</label>
+                          <input type="text" id="email" name="email" placeholder="Your email" required>
+                      </li>
+                      <li style="float:right;width:45%;margin:0 10px 0 0">
+                          <label for="password"  class="label">Password</label>
+                          <input type="password" id="password" name="password" placeholder="Your password" required>
+                      </li>
+                      <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
+                      <li style="margin:0 10px">
+                          <input type="submit" value="Sign In">
+                      </li>
+                  </ul>
+              </form>
+          </div>
+          <div class="modal-footer" style="margin: 0 10px">
+              {{#if hasErrors}}
+                  <div style="background-color: antiquewhite;padding:0 10px;border:1px red solid;border-radius: 3px;margin-bottom: 3px">
+                      {{# each messages}}
+                          <h4>{{this}}</h4>
+                      {{/each}}
+                  </div>
+              {{else}}
+                  <h3>Don't you have an account ?<span><a onClick="document.getElementById('signUpModal').style.display='block';
+                        document.getElementById('signInModal').style.display='none'" style="color: antiquewhite;cursor: pointer;"> Sign up</a></span></h3>
+              {{/if}}
+          </div>
+      </div>
+
+  </div>
+
+  <div id="contact" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content" style="background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 2)), url(images/bg01.png);">
+          <div class="modal-header">
+              <button onClick="document.getElementById('contact').style.display='none'" class="close">&times;</button>
+              <h2 class="button big icon fa-paper-plane-o" style="font-size:1.5em;color:white;background:black;">Contact us</h2>
+          </div>
+          <div class="modal-body">
+              <form action="/contact" method="post">
+                  <ul style="text-decoration:none;margin-bottom: 0">
+                      <li style="margin:10px">
+                          <label for="message"  class="label">Message</label>
+                          <textarea type="text" id="message" name="message" required minlength="5" placeholder="Please write your message"></textarea>
+                      </li>
+                      <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
+                      <li style="margin:0 10px">
+                          <input type="submit" value="Send">
+                      </li>
+                  </ul>
+              </form>
+          </div>
+      </div>
+
+  </div>
+
+  <!-- Body -->
+  {{{body}}}
+
+
+<!-- Bootsrap
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  -->
+  <script src="https://use.fontawesome.com/eb30b781f2.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.dropotron.min.js"></script>
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+  <script src="assets/js/main.js"></script>
+  <script src='https://rawgit.com/shaneapen/Async-Youtube-Player/master/async_youtube_player.js'></script>
+
+  <script>
+
+      var youtube = document.querySelectorAll( ".youtube" );
+      for (var i = 0; i < youtube.length; i++) {
+          // add the code here
+          var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";
+          var image = new Image();
+          image.src = source;
+          image.addEventListener( "load", function() {
+              youtube[ i ].appendChild( image );
+          }( i ) );
+
+          youtube[i].addEventListener( "click", function() {
+
+              var iframe = document.createElement( "iframe" );
+
+              iframe.setAttribute( "frameborder", "0" );
+              iframe.setAttribute( "allowfullscreen", "" );
+              iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.embed +"?rel=0&showinfo=0&autoplay=1" );
+
+              this.innerHTML = "";
+              this.appendChild( iframe );
+          } );
+      }
+  </script>
+
+</body>
+</html>

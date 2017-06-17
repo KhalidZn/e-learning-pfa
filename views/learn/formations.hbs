@@ -1,0 +1,91 @@
+<div class="homepage">
+<div id="page-wrapper">
+
+    <!-- Banner -->
+    {{#if hasMessages}}
+    <div id="banner-wrapper">
+        <div id="banner" class="box container">
+            {{#if hasErrors}}
+                <div style="background-color: antiquewhite;padding:0 10px;border:1px red solid;border-radius: 3px;margin-bottom: 3px">
+                    {{# each messages}}
+                        <p>{{this}}</p>
+                    {{/each}}
+                </div>
+            {{/if}}
+            {{#if isSent}}
+                <div style="background-color: #DFF2BF;padding:0 10px;border:1px black solid;border-radius: 3px;margin-bottom: 3px">
+                    {{# each successContact}}
+                        <p style="color: #4F8A10;">{{this}}</p>
+                    {{/each}}
+                </div>
+            {{/if}}
+            <!-- <div class="row">
+
+            </div> -->
+        </div>
+    </div>
+    {{/if}}
+<div id="features-wrapper">
+    <div class="container">
+        <div id='formations' style="width:  100%;background-color: white;border-radius: 5px;padding: 10px 20px;margin-bottom: 10px">
+            <h2 style="margin: 0"><i class="fa fa-th-large" aria-hidden="true"></i>
+                {{cat}} ({{count}})
+            </h2>
+        </div>
+        <div class="row">
+
+            {{#each formations }}
+                <div class="4u 6u(medium) 12u(small)">
+
+                    <!-- Box -->
+                    <section class="box feature" style="height: 350px;overflow: auto;">
+                        <div class="youtube" data-embed="{{this.vId}}" style="width: 100%">
+
+                            <!-- (2) the "play" button -->
+                            <div class="play-button"></div>
+
+                        </div>
+                        <!-- <div class='youtube_codegena' id='{{this.vId}}' data-params='?&theme=light&autoplay=1&color=white&autohide=2&modestbranding=1&showinfo=0' src='http://i.ytimg.com/vi/{{this.vId}}/maxresdefault.jpg'style='width:100%; height:250px;'></div>
+
+
+                                 <iframe width="100%" height="300" src="https://www.youtube.com/embed/QAbQgLGKd3Y" frameborder="0" allowfullscreen style="border-radius: 5px">
+                                 </iframe>-->
+                        <div class="inner" style="padding: 1em;">
+                            <header style="margin: 0;">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                : {{this.nbFollowers}} following
+                                <h2>{{this.formName}}</h2>
+                                <p>By {{this.former.name}}</p>
+                            </header><hr style="margin: 0">
+                            <p>{{this.formDescription}}</p>
+                            <form action="/watchLater" method="post">
+                                <input type="hidden" name="formationId" value="{{this._id}}">
+                                <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
+                                <input type="submit" value="Watch it later" style="padding: 0">
+                            </form>
+                        </div>
+                    </section>
+
+                </div>
+
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+    <div id="footer-wrapper">
+        <footer id="footer" class="container">
+            <div class="row">
+                <div class="12u">
+                    <div id="copyright">
+                        <ul class="menu">
+                            <li>&copy; E-Learning. All rights reserved</li><li>Developed with : <i class="fa fa-heart-o" aria-hidden="true"></i> of <a href="https://nodejs.org">NodeJS</a>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>
+</div>
