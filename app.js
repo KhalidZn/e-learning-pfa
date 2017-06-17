@@ -15,8 +15,8 @@ var MongoStore=require('connect-mongo')(session);
 var moment=require('moment');
 
 var Handlebars = require("handlebars");
-var MomentHandler=require("handlebars.moment");
-MomentHandler.registerHelpers(Handlebars);
+//var MomentHandler=require("handlebars.moment");
+//MomentHandler.registerHelpers(Handlebars);
 
 var index = require('./routes/index');
 
