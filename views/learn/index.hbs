@@ -62,7 +62,9 @@
 
                 {{#each computerFormations }}
                       <div class="3u 6u(medium) 12u(small)">
-
+                      {{#if login}}
+                        <a href="watching?formation={{this._id}}" style="text-decoration: none;cursor: pointer;color: #858585;">
+                      {{/if}}
                             <!-- Box -->
                             <section class="box feature" style="height: 380px;overflow: auto;">
                                 <div class="youtube" data-embed="{{this.vId}}" style="width: 100%">
@@ -86,7 +88,9 @@
                                     </form>
                                 </div>
                             </section>
-
+                          {{#if login}}
+                        </a>
+                          {{/if}}
                         </div>
 
                 {{/each}}
