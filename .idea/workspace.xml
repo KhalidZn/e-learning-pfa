@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdc0fa79-8f1b-4954-b007-1f56f58fedbc" name="Default" comment="" />
+    <list default="true" id="cdc0fa79-8f1b-4954-b007-1f56f58fedbc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -60,8 +62,8 @@
       <file leaf-file-name="hasformations.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/partials/hasformations.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="100" column="50" lean-forward="false" selection-start-line="100" selection-start-column="50" selection-end-line="100" selection-end-column="50" />
+            <state relative-caret-position="120">
+              <caret line="101" column="74" lean-forward="false" selection-start-line="101" selection-start-column="74" selection-end-line="101" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -494,12 +496,12 @@
       <workItem from="1497723956783" duration="1000000" />
       <workItem from="1497725029563" duration="1276000" />
       <workItem from="1497732573097" duration="1265000" />
-      <workItem from="1497743795582" duration="8209000" />
+      <workItem from="1497743795582" duration="8334000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="270951000" />
+    <option name="totallyTimeSpent" value="271076000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="37" y="24" width="1329" height="744" extended-state="6" />
@@ -925,8 +927,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/hasformations.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="100" column="50" lean-forward="false" selection-start-line="100" selection-start-column="50" selection-end-line="100" selection-end-column="50" />
+        <state relative-caret-position="120">
+          <caret line="101" column="74" lean-forward="false" selection-start-line="101" selection-start-column="74" selection-end-line="101" selection-end-column="74" />
           <folding />
         </state>
       </provider>
