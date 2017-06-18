@@ -132,13 +132,13 @@ router.post('/watchLater',function (req,res,next) {
 
     })
 
-    }
+    }/*
     if(req.session.oldUrl){
     var oldUrl=req.session.oldUrl;
     req.session.oldUrl=null;
       res.redirect(oldUrl);
     }else
-    res.redirect('/');
+    res.redirect('/');*/
 });
 
 router.post('/addComment' ,function (req,res,next) {
