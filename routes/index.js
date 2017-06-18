@@ -266,15 +266,32 @@ router.get('/', function(req, res, next) {
         var businessFormations=business_formations.slice(0,4);
         Formation.find({'formCategory':'health'},function (err,health_formations) {
             var health_formations=health_formations.slice(0,4);
+            Formation.find({'formCategory':'cooking'},function (err,cooking_formations) {
+                var cooking_formations=cooking_formations.slice(0,4);
+
+                Formation.find({'formCategory':'sciences'},function (err,sciences_formations) {
+                    var sciences_formations=sciences_formations.slice(0,4);
+
+
+                    Formation.find({'formCategory':'math'},function (err,math_formations) {
+                        var math_formations=math_formations.slice(0,4);
+
             console.log("messages going"+messages);
-           res.render('learn/index', { title: 'E-Learning',csrfToken: req.csrfToken(),
-            messages:messages,hasErrors:messages.length>0,following:following,
-                successContact:successContact,isSent:successContact.length,
-                computerFormations:computerFormations,
-                healthFormations:health_formations,
-                businessFormations:businessFormations,
-               nbStudents:nbStudents,nbFormers:nbFormers,nbFormations:nbFormations,
-               nbMessages:nbMessages
+           res.render('learn/index', {
+               title: 'E-Learning', csrfToken: req.csrfToken(),
+               messages: messages, hasErrors: messages.length > 0, following: following,
+               successContact: successContact, isSent: successContact.length,
+               computerFormations: computerFormations,
+               mathFormations: math_formations,
+               sciencesFormations: sciences_formations,
+               cookingFormations: cooking_formations,
+               healthFormations: health_formations,
+               businessFormations: businessFormations,
+               nbStudents: nbStudents, nbFormers: nbFormers, nbFormations: nbFormations,
+               nbMessages: nbMessages,
+           });
+           });
+           });
         });
         });
        });
