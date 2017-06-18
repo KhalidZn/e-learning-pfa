@@ -124,7 +124,7 @@ router.post('/watchLater',function (req,res,next) {
             }else {
                 messages.push('The formation has been added to you profile');
                 console.log('messages going: '+messages);
-                return req.flash('successAdd', messages);
+                return req.flash('successAdd', 'The formation has been added to you profile');
                 console.log('The formation has been added to you profile');
                 return res.render('learn/following');
             }
