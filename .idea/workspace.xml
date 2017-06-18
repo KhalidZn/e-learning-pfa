@@ -18,11 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.hbs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/learn/index.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="447" column="27" lean-forward="true" selection-start-line="447" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
+            <state relative-caret-position="-59">
+              <caret line="417" column="50" lean-forward="false" selection-start-line="417" selection-start-column="50" selection-end-line="417" selection-end-column="50" />
               <folding>
                 <element signature="n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
@@ -31,7 +31,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="discussion.hbs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="discussion.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/learn/discussion.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-45">
@@ -176,13 +176,13 @@
         <option value="$PROJECT_DIR$/config/passport.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/partials/hasformations.hbs" />
-        <option value="$PROJECT_DIR$/views/learn/index.hbs" />
         <option value="$PROJECT_DIR$/views/learn/profile.hbs" />
         <option value="$PROJECT_DIR$/views/learn/messages.hbs" />
         <option value="$PROJECT_DIR$/views/learn/watching.hbs" />
         <option value="$PROJECT_DIR$/views/learn/formations.hbs" />
         <option value="$PROJECT_DIR$/views/learn/following.hbs" />
         <option value="$PROJECT_DIR$/views/learn/discussion.hbs" />
+        <option value="$PROJECT_DIR$/views/learn/index.hbs" />
       </list>
     </option>
   </component>
@@ -486,12 +486,12 @@
       <workItem from="1497723956783" duration="1000000" />
       <workItem from="1497725029563" duration="1276000" />
       <workItem from="1497732573097" duration="1265000" />
-      <workItem from="1497743795582" duration="3002000" />
+      <workItem from="1497743795582" duration="3152000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265744000" />
+    <option name="totallyTimeSpent" value="265894000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="37" y="24" width="1329" height="744" extended-state="6" />
@@ -873,17 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/learn/index.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="447" column="27" lean-forward="true" selection-start-line="447" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/learn/formations.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -906,6 +895,17 @@
           <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
           <folding>
             <marker date="1497749418519" expanded="true" signature="6001:6031" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/learn/index.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-59">
+          <caret line="417" column="50" lean-forward="false" selection-start-line="417" selection-start-column="50" selection-end-line="417" selection-end-column="50" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
