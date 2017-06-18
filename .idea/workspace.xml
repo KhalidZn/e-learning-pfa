@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdc0fa79-8f1b-4954-b007-1f56f58fedbc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/learn/index.hbs" afterPath="$PROJECT_DIR$/views/learn/index.hbs" />
-    </list>
+    <list default="true" id="cdc0fa79-8f1b-4954-b007-1f56f58fedbc" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,7 +18,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.hbs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/learn/index.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="76">
@@ -120,11 +118,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="291" column="14" lean-forward="false" selection-start-line="291" selection-start-column="14" selection-end-line="291" selection-end-column="14" />
+            <state relative-caret-position="280">
+              <caret line="128" column="37" lean-forward="true" selection-start-line="128" selection-start-column="37" selection-end-line="128" selection-end-column="37" />
               <folding>
                 <element signature="e#1765#2619#0" expanded="false" />
                 <element signature="e#2677#2866#0" expanded="false" />
@@ -176,7 +174,6 @@
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/config/passport.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/partials/hasformations.hbs" />
         <option value="$PROJECT_DIR$/views/learn/profile.hbs" />
         <option value="$PROJECT_DIR$/views/learn/messages.hbs" />
@@ -185,6 +182,7 @@
         <option value="$PROJECT_DIR$/views/learn/following.hbs" />
         <option value="$PROJECT_DIR$/views/learn/discussion.hbs" />
         <option value="$PROJECT_DIR$/views/learn/index.hbs" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
   </component>
@@ -488,12 +486,12 @@
       <workItem from="1497723956783" duration="1000000" />
       <workItem from="1497725029563" duration="1276000" />
       <workItem from="1497732573097" duration="1265000" />
-      <workItem from="1497743795582" duration="3541000" />
+      <workItem from="1497743795582" duration="3985000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="266283000" />
+    <option name="totallyTimeSpent" value="266727000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="37" y="24" width="1329" height="744" extended-state="6" />
@@ -826,18 +824,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="291" column="14" lean-forward="false" selection-start-line="291" selection-start-column="14" selection-end-line="291" selection-end-column="14" />
-          <folding>
-            <element signature="e#1765#2619#0" expanded="false" />
-            <element signature="e#2677#2866#0" expanded="false" />
-            <element signature="e#2925#3181#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/hasformations.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -908,6 +894,18 @@
           <folding>
             <element signature="n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="128" column="37" lean-forward="true" selection-start-line="128" selection-start-column="37" selection-end-line="128" selection-end-column="37" />
+          <folding>
+            <element signature="e#1765#2619#0" expanded="false" />
+            <element signature="e#2677#2866#0" expanded="false" />
+            <element signature="e#2925#3181#0" expanded="false" />
           </folding>
         </state>
       </provider>

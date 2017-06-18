@@ -126,7 +126,7 @@ router.post('/watchLater',function (req,res,next) {
                 console.log('messages going: '+messages);
                 return req.flash('error', messages);
                 console.log('The formation has been added to you profile');
-                return res.redirect('/following');
+                return res.redirect('learn/following');
             }
         });
 
