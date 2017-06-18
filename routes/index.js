@@ -137,8 +137,8 @@ router.post('/watchLater',function (req,res,next) {
     var oldUrl=req.session.oldUrl;
     req.session.oldUrl=null;
       res.redirect(oldUrl);
-    }else
-    res.redirect('/');*/
+    }else*/
+    res.redirect('/following');
 });
 
 router.post('/addComment' ,function (req,res,next) {
