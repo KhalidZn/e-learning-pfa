@@ -114,7 +114,7 @@ passport.use('local.signin',new localStrategy({
             return done(err);
         }
         if (!user){
-            return done(null,false,{message:"Sorry we couldn't find a user with matching your credentials "});
+            return done(null,false,{message:"Sorry no user found matching your credentials, please try again "});
         }
         if(!user.validPassword(password)){
             return done(null,false,{message:"Wrong email or password, please try again"});
