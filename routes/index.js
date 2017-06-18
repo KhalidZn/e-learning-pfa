@@ -124,9 +124,9 @@ router.post('/watchLater',function (req,res,next) {
             }else {
                 messages.push('The formation has been added to you profile');
                 console.log('messages going: '+messages);
-                return req.flash('error', messages);
+                return req.flash('successAdd', messages);
                 console.log('The formation has been added to you profile');
-                return res.redirect('learn/following');
+                return res.render('learn/following');
             }
         });
 
@@ -514,6 +514,7 @@ router.get('/following',isLoggedIn,isFollowing,function (req,res,next) {
   req.session.oldUrl=req.url;
     var nbMessages;
     var successContact=req.flash('successContact');
+    var successAdd=req.flash('successAdd');
     Message.count({'to':req.user}, function (err, count) {
         if(err){
             console.log(err);
@@ -548,6 +549,7 @@ router.get('/following',isLoggedIn,isFollowing,function (req,res,next) {
                 nbMessages:nbMessages,
                 csrfToken: req.csrfToken(),
                 successContact:successContact,isSent:successContact.length>0,
+                successAdd:successAdd,isAdded:successAdd.length>0
 
             });
         }
