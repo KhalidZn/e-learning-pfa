@@ -298,23 +298,27 @@ router.get('/', function(req, res, next) {
    });
 });
 
-router.get('/watching',isLoggedIn,function (req,res,next) {
+router.get('/watching',function (req,res,next) {
     req.session.oldUrl=req.url;
+
     var nbMessages;
-    Message.count({'to':req.user}, function (err, count) {
-        if(err){
-            console.log(err);
-        }
-        nbMessages=count>1?count:1;
-    });
     var following;
-    Follow.count({'user':req.user}, function (err, count) {
-        if(err){
-            console.log(err);
-        }
-        var count=count>0 ? count: '';
-        following=count;
-    });
+    if(req.user){
+        Message.count({'to':req.user}, function (err, count) {
+            if(err){
+                console.log(err);
+            }
+            nbMessages=count>1?count:1;
+        });
+        Follow.count({'user':req.user}, function (err, count) {
+            if(err){
+                console.log(err);
+            }
+            var count=count>0 ? count: '';
+            following=count;
+        });
+    }
+
     var successComment=req.flash('successComment');
     var formationId=req.query.formation;
     Formation.findOne({_id:formationId},function (err,formation) {

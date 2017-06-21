@@ -82,6 +82,7 @@
 
                     </div>
                     <!-- Box -->
+
                     <section class="box feature" style="height: 400px;overflow: auto;">
 
                         <input value="Start watching" onclick="watch('{{this.vId}}','{{this._id}}')"
@@ -94,6 +95,8 @@
                         </div>
 
                         <div class="inner" style="padding: 1em;">
+                            <a href="watching?formation={{this._id}}" style="text-decoration: none;cursor: pointer;color: #858585;">
+
                             <header style="margin: 0;">
 
                                 <i class="fa fa-users" aria-hidden="true"></i>
@@ -102,6 +105,7 @@
                                 <p>By {{this.former.name}}</p>
                             </header><hr style="margin: 0">
                             <p>{{this.formDescription}}</p>
+                        </a>
                             <input type="submit" style="padding:0;background: #F44336" value="Unfollow" onClick="document.getElementById('unfollow'+'{{this._id}}').style.display='block';">
 
 
