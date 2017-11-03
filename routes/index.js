@@ -216,7 +216,7 @@ router.get('/', function(req, res, next) {
   req.session.oldUrl=req.url;
     //var successFollow=req.flash('successFollow');
     var page={
-        "title":"E-Learning -Home",
+        "title":"E-Learning - Home",
         "description":"E-Learning index page",
     }
 
@@ -585,7 +585,7 @@ router.get('/following',isLoggedIn,isFollowing,function (req,res,next) {
                 nbMessages:nbMessages,
                 csrfToken: req.csrfToken(),
                 successContact:successContact,isSent:successContact.length>0,
-                successAdd:successAdd,isAdded:successAdd.length>0
+                successAdd:successAdd,isAdded:successAdd.length>0,page:page
 
             });
         }
