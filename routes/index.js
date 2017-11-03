@@ -215,6 +215,11 @@ router.post('/contact',function (req,res,next) {
 router.get('/', function(req, res, next) {
   req.session.oldUrl=req.url;
     //var successFollow=req.flash('successFollow');
+    var page={
+        "title":"E-Learning",
+        "description":"E-Learning index page",
+    }
+
     var successContact=req.flash('successContact');
     var messages=req.flash('error');
     console.log('messages coming: '+messages);
@@ -288,7 +293,7 @@ router.get('/', function(req, res, next) {
                healthFormations: health_formations,
                businessFormations: businessFormations,
                nbStudents: nbStudents, nbFormers: nbFormers, nbFormations: nbFormations,
-               nbMessages: nbMessages,
+               nbMessages: nbMessages,page:page
            });
            });
            });
@@ -324,6 +329,10 @@ router.get('/watching',function (req,res,next) {
     Formation.findOne({_id:formationId},function (err,formation) {
         if(err) console.log("couldn't find form "+formationId);
             console.log("formation: " +formation);
+        var page={
+            "title":"Watching page",
+            "description":"Formation "+formation.formName,
+        }
 
             Comment.find({'formation':formationId},function (err,comments) {
 
@@ -337,7 +346,8 @@ router.get('/watching',function (req,res,next) {
                     successComment:successComment,
                     isAdded:successComment.length,
                     following:following,
-                    nbMessages:nbMessages
+                    nbMessages:nbMessages,
+                    page:page
                 });
             });
         });
@@ -374,6 +384,10 @@ router.get('/formations',function (req,res,next) {
             console.log(err);
         }
         console.log(formations);
+        var page={
+            "title":"Formations page",
+            "description":"Formations category :"+formationsCat,
+        }
         res.render('learn/formations',{formations:formations,
             cat:formationsCat.charAt(0).toUpperCase() + formationsCat.slice(1),
         count:formations.length,following:following,
@@ -381,7 +395,8 @@ router.get('/formations',function (req,res,next) {
          messages:messages,hasErrors:messages.length>0,following:following,
          successContact:successContact,isSent:successContact.length>0,
             nbMessages:nbMessages,
-       hasMessages:(messages.length>0)?(messages.length>0):successContact.length});
+       hasMessages:(messages.length>0)?(messages.length>0):successContact.length,
+        page:page});
 
     });
 })
@@ -399,9 +414,14 @@ router.get('/discussion',isLoggedIn,function (req,res,next) {
         following=count;
 
         console.log('from discussion following '+following);
+        var page={
+            "title":"Discussion ",
+            "description":"E-learning open discussion",
+        }
         res.render('learn/discussion',{csrfToken: req.csrfToken(),
             following:following,
-            successContact:successContact,isSent:successContact.length>0
+            successContact:successContact,isSent:successContact.length>0,
+            page:page
         });
     });
 });
@@ -440,6 +460,10 @@ router.get('/profile',isLoggedIn,function (req,res,next) {
             var count=count>0 ? count:0;
             following=count;
         });
+    var page={
+        "title":"Profile",
+        "description":"Profile "+req.user.name.fist+' '+req.user.name.last,
+    }
         if(following>0){
             Follow.findOne({'user':req.user},function (err,relatedFormation) {
                 Formation.findOne({_id:relatedFormation.formation},function (err,relatedCategory) {
@@ -454,12 +478,13 @@ router.get('/profile',isLoggedIn,function (req,res,next) {
                                 console.log(err);
                             }
                             var formations=formation;
+
                             res.render('learn/profile',{csrfToken: req.csrfToken(),
                                 messages:messages,hasErrors:messages.length>0,following:following,
                                 successContact:successContact,isSent:successContact.length>0,
                                 formations:formations,hasFormations:formations.length,
                                 relatedFormations:relatedFormations,relatedCat:relatedCat,
-                                nbMessages:nbMessages
+                                nbMessages:nbMessages,page::page
                             });
                         })
                     })
@@ -482,7 +507,7 @@ router.get('/profile',isLoggedIn,function (req,res,next) {
                         successContact:successContact,isSent:successContact.length>0,
                         formations:formations,hasFormations:formations.length,
                         relatedFormations:relatedFormations.slice(0,6),relatedCat:relatedCat,
-                        nbMessages:nbMessages
+                        nbMessages:nbMessages,page:page
                     });
                 })
             })
@@ -508,10 +533,14 @@ router.get('/messages',isLoggedIn,function (req,res,next) {
         following=count;
     });
     Message.find({'to':req.user},function (err,messages) {
+        var page={
+            "title":"Messages",
+            "description":req.user.name.first+' '+req.user.name.last+"'s messages page",
+        }
        res.render('learn/messages',{messages:messages,nbMessages:messages.length,
            csrfToken: req.csrfToken(),
            successContact:successContact,isSent:successContact.length>0,
-           nbMessages:nbMessages,following:following});
+           nbMessages:nbMessages,following:following,page:page});
     });
 });
 router.get('/following',isLoggedIn,isFollowing,function (req,res,next) {
@@ -547,7 +576,10 @@ router.get('/following',isLoggedIn,isFollowing,function (req,res,next) {
             console.log(err);
         }
         function render() {
-
+            var page={
+                "title":"Following",
+                "description":req.user.name.last+' '+req.user.name.first+"'s followed courses",
+            }
             res.render('learn/following',{
                 followingCourses:followingCourses,following:following.length,
                 nbMessages:nbMessages,
