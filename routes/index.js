@@ -330,8 +330,8 @@ router.get('/watching',function (req,res,next) {
         if(err) console.log("couldn't find form "+formationId);
             console.log("formation: " +formation);
         var page={
-            "title":"Course: "+formation.formName,
-            "description":"Course "+formation.formName+" watching page",
+            "title":"Course : "+formation.formName,
+            "description":"Course "+formation.formName+" - watching page",
         }
 
             Comment.find({'formation':formationId},function (err,comments) {
