@@ -216,7 +216,7 @@ router.get('/', function(req, res, next) {
   req.session.oldUrl=req.url;
     //var successFollow=req.flash('successFollow');
     var page={
-        "title":"E-Learning",
+        "title":"E-Learning -Home",
         "description":"E-Learning index page",
     }
 
@@ -330,8 +330,8 @@ router.get('/watching',function (req,res,next) {
         if(err) console.log("couldn't find form "+formationId);
             console.log("formation: " +formation);
         var page={
-            "title":"Watching page",
-            "description":"Formation "+formation.formName,
+            "title":"Watching "+formation.formName,
+            "description":"Course "+formation.formName,
         }
 
             Comment.find({'formation':formationId},function (err,comments) {
@@ -385,8 +385,8 @@ router.get('/formations',function (req,res,next) {
         }
         console.log(formations);
         var page={
-            "title":"Formations page",
-            "description":"Formations category :"+formationsCat,
+            "title":formationsCat+" courses",
+            "description":"courses from category : "+formationsCat,
         }
         res.render('learn/formations',{formations:formations,
             cat:formationsCat.charAt(0).toUpperCase() + formationsCat.slice(1),
@@ -461,7 +461,7 @@ router.get('/profile',isLoggedIn,function (req,res,next) {
             following=count;
         });
     var page={
-        "title":"Profile",
+        "title":"Profile -"+req.user.name.fist+' '+req.user.name.last,
         "description":"Profile "+req.user.name.fist+' '+req.user.name.last,
     }
         if(following>0){
@@ -534,7 +534,7 @@ router.get('/messages',isLoggedIn,function (req,res,next) {
     });
     Message.find({'to':req.user},function (err,messages) {
         var page={
-            "title":"Messages",
+            "title":"Messages"+req.user.name.fist+' '+req.user.name.last,
             "description":req.user.name.first+' '+req.user.name.last+"'s messages page",
         }
        res.render('learn/messages',{messages:messages,nbMessages:messages.length,
