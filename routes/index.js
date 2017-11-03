@@ -461,7 +461,7 @@ router.get('/profile',isLoggedIn,function (req,res,next) {
             following=count;
         });
     var page={
-        "title":"Profile -"+req.user.name.fist+' '+req.user.name.last,
+        "title":"Profile -"+req.user.name.first+' '+req.user.name.last,
         "description":"Profile "+req.user.name.first+' '+req.user.name.last,
     }
         if(following>0){
