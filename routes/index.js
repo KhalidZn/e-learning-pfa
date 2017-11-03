@@ -484,7 +484,7 @@ router.get('/profile',isLoggedIn,function (req,res,next) {
                                 successContact:successContact,isSent:successContact.length>0,
                                 formations:formations,hasFormations:formations.length,
                                 relatedFormations:relatedFormations,relatedCat:relatedCat,
-                                nbMessages:nbMessages,page::page
+                                nbMessages:nbMessages,page:page
                             });
                         })
                     })
