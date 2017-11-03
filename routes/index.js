@@ -577,7 +577,7 @@ router.get('/following',isLoggedIn,isFollowing,function (req,res,next) {
         }
         function render() {
             var page={
-                "title":"Following",
+                "title":"Followed courses",
                 "description":req.user.name.last+' '+req.user.name.first+"'s followed courses",
             }
             res.render('learn/following',{
